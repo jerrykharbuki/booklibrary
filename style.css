@@ -1,0 +1,13 @@
+body {
+    background-color: rgb(52, 170, 170);
+}
+
+.card {
+    background: white;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 8px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
