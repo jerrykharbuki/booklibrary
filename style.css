@@ -1,13 +1,18 @@
-body {
+/* body {
     background-color: rgb(52, 170, 170);
 }
 
 .card {
     background: white;
-    padding: 10px;
+    padding: 20px;
     margin: 10px;
     border-radius: 8px;
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
     gap: 10px;
 }
+
+#delete {
+    padding: 5px;
+    border-radius: 5px;
+} */

@@ -7,18 +7,27 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <form action="">
-    <input type="text" id="title" placeholder="Book Title">
-    <input type="text" id="author" placeholder="Author">
-    <input type="number" id="pages" placeholder="Pages">
-    <input type="checkbox" id="read"> Read
-    <button type="submit">Add Book</button>
+<button type="button" id="addBook">Add Book</button>
+<dialog id="bookDialog">
+  <form id="bookForm">
+    <h2>Add Book</h2>
+    <label>
+      Author:
+      <input type="text" id="title" placeholder="Book Title">
+      <input type="text" id="author" placeholder="Author">
+     <input type="number" id="pages" placeholder="Pages">
+     <input type="checkbox" id="read"> Read
+    </label>
+    <br><br>
+    <button type="submit" id="sub">Submit</button>
+    <button type="button" id="closeBtn">Cancel</button>
+  </form>
+</dialog>
+    <button type="button" id="clear">Clear All Books </button>
 </form>
   <div class="cards">
-
+    
   </div>
-
-
   <script src="index.js"></script>
 </body>
 </html>
