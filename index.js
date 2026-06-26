@@ -36,3 +36,26 @@ for (let i = 0; i < bookarr.length; i++) {
 }
 
 //taking book from the user 
+const form = document.querySelector("form");
+const titleInput = document.querySelector("#title");
+const authorInput = document.querySelector("#author");
+const pagesInput = document.querySelector("#pages");
+const readInput = document.querySelector("#read");
+
+form.addEventListener("submit", (event) => {
+    event.preventDefault();
+    const titile = titleInput.value;
+    const author = authorInput.value;
+    const pages = pagesInput.value;
+    const read = readInput.checked;
+
+    addBook(titile, author, pages, read);
+    container.innerHTML += `
+    <div class="card">
+        <h2>${titile}</h2>
+        <p>${author}</p>
+        <p>${pages} pages</p>
+        <p>${read ? "Read" : "Not Read"}</p>
+    </div>`;
+
+});
