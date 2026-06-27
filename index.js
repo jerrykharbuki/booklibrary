@@ -8,6 +8,7 @@ document.getElementById("addBook").addEventListener("click"
     }
 
 );
+//to take input from the forms 
 
 const form = document.getElementById("bookForm");
 form.addEventListener("submit", function (event) {
@@ -17,6 +18,7 @@ form.addEventListener("submit", function (event) {
     const pages = document.getElementById("pages").value;
 
     console.log(book);
+    creatediv(book, author, pages);
 
     dialog.close();
 
@@ -28,8 +30,23 @@ document.getElementById("closeBtn").addEventListener("click", () => {
     dialog.close();
 }
 );
+//to create a new div and print it there
 
-//taking the input from user
+function creatediv(book, author, pages) {
+    const newdiv = document.createElement("div");
+    newdiv.innerHTML = `
+    <h3>Book Name: ${book} </h3> 
+    <p>Author : ${author}</p>
+    <p> Number of pages: ${pages}<p/>
+    `;
+    const container = document.querySelector(".cards");
+    container.appendChild(newdiv);
+
+    newdiv.classList.add("card");
+
+}
+
+
 
 
 
