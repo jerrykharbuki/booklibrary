@@ -60,30 +60,35 @@ function loadBooks() {
 
             for (let i = 0; i < 10; i++) {
                 const book = data.docs[i];
+                const imageUrl = book.cover_i
+                    ? `https://covers.openlibrary.org/b/id/${book.cover_i}-M.jpg`
+                    : "placeholder.jpg"; // Optional fallback image
                 console.log(book.author_name);
                 console.log("Title:", book.title);
 
                 printdefault(
                     book.title,
                     book.author_name ? book.author_name.join(", ") : "Unknown",
-                    "N/A"
+                    "N/A", imageUrl
                 );
             }
         })
         .catch(error => console.error("Error:", error));
 }
 
-function printdefault(book, author, pages) {
+function printdefault(book, author, pages, imageUrl) {
     const newdiv = document.createElement("div");
     newdiv.innerHTML = `
     <h3>Book Name: ${book} </h3> 
     <p>Author : ${author}</p>
     <p> Number of pages: ${pages}<p/>
+    <img src="${imageUrl}" alt="${book}">
     `;
     const container = document.querySelector(".defaultbook");
     container.appendChild(newdiv);
 
     newdiv.classList.add("defaultbook");
+
 
 }
 
