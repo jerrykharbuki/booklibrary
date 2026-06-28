@@ -46,6 +46,47 @@ function creatediv(book, author, pages) {
 
 }
 
+// api
+
+window.addEventListener("load", () => {
+    loadBooks();
+});
+
+function loadBooks() {
+    fetch("https://openlibrary.org/search.json?q=fiction")
+        .then(response => response.json())
+        .then(data => {
+            console.log(data.docs);
+
+            for (let i = 0; i < 10; i++) {
+                const book = data.docs[i];
+                console.log(book.author_name);
+                console.log("Title:", book.title);
+
+                printdefault(
+                    book.title,
+                    book.author_name ? book.author_name.join(", ") : "Unknown",
+                    "N/A"
+                );
+            }
+        })
+        .catch(error => console.error("Error:", error));
+}
+
+function printdefault(book, author, pages) {
+    const newdiv = document.createElement("div");
+    newdiv.innerHTML = `
+    <h3>Book Name: ${book} </h3> 
+    <p>Author : ${author}</p>
+    <p> Number of pages: ${pages}<p/>
+    `;
+    const container = document.querySelector(".defaultbook");
+    container.appendChild(newdiv);
+
+    newdiv.classList.add("defaultbook");
+
+}
+
 
 
 
