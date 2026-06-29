@@ -53,9 +53,16 @@ window.addEventListener("load", () => {
 });
 
 function loadBooks() {
+    const storedBooks = localStorage.getItem("books");
+
+    if (storedBooks) {
+        console.log("Loading from localStorage");
+    }
+    const books = JSON.parse(storedBooks);
     fetch("https://openlibrary.org/search.json?q=fiction")
         .then(response => response.json())
         .then(data => {
+            localStorage.setItem("books", JSON.stringify(data.docs));
             console.log(data.docs);
 
             for (let i = 0; i < 10; i++) {
@@ -63,9 +70,6 @@ function loadBooks() {
                 const imageUrl = book.cover_i
                     ? `https://covers.openlibrary.org/b/id/${book.cover_i}-M.jpg`
                     : "placeholder.jpg"; // Optional fallback image
-                console.log(book.author_name);
-                console.log("Title:", book.title);
-
                 printdefault(
                     book.title,
                     book.author_name ? book.author_name.join(", ") : "Unknown",
