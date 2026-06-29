@@ -1,21 +1,40 @@
-body {
-    background-color: rgb(249, 237, 159);
-}
+  :root {
+      --pixel-black: #111111;
+      --pixel-white: #ffffff;
+      --pixel-gold: #f1c40f;
+      --pixel-green: #2ecc71;
+      --pixel-red: #e74c3c;
+      --pixel-blue: #3498db;
+      --console-bg: #e3d9b8;
+      --screen-bg: #22252c;
+  }
 
-h1,
-h2,
-h3 {
-    font-family: "Press Start 2P", system-ui;
-}
+  body {
+      background-color: var(--console-bg);
+      background-image:
+          radial-gradient(#d3c9a8 15%, transparent 16%),
+          radial-gradient(#d3c9a8 15%, transparent 16%);
+      background-size: 16px 16px;
+      background-position: 0 0, 8px 8px;
+      font-family: 'Inter', sans-serif;
+      color: var(--pixel-black);
+      image-rendering: pixelated;
+  }
 
-body,
-p,
-button,
-input {
-    font-family: "Inter", sans-serif;
-}
+  h1,
+  h2,
+  h3 {
+      font-family: "Press Start 2P", system-ui;
+  }
 
-/* .card {
+  body,
+  p,
+  button,
+  input {
+      font-family: "Inter", sans-serif;
+  }
+
+  /* .card {
     background: white;
     padding: 20px;
     margin: 10px;
