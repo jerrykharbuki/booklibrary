@@ -51,42 +51,51 @@ function creatediv(book, author, pages) {
 window.addEventListener("load", () => {
     loadBooks();
 });
+const books = [];
 
 function loadBooks() {
-    const storedBooks = localStorage.getItem("books");
+    const storedata = localStorage.getItem("books");
 
-    if (storedBooks) {
+    if (storedata) {
         console.log("Loading from localStorage");
+        const storebooks = JSON.parse(storedata);
+        console.log(storebooks);
     }
-    const books = JSON.parse(storedBooks);
+
     fetch("https://openlibrary.org/search.json?q=fiction")
         .then(response => response.json())
         .then(data => {
             localStorage.setItem("books", JSON.stringify(data.docs));
-            console.log(data.docs);
 
             for (let i = 0; i < 10; i++) {
-                const book = data.docs[i];
-                const imageUrl = book.cover_i
-                    ? `https://covers.openlibrary.org/b/id/${book.cover_i}-M.jpg`
-                    : "placeholder.jpg"; // Optional fallback image
+                const doc = data.docs[i];
+
+                books.push({
+                    title: doc.title,
+                    author: doc.author_name ? doc.author_name.join(", ") : "Unknown",
+                    cover: doc.cover_i
+                        ? `https://covers.openlibrary.org/b/id/${doc.cover_i}-M.jpg`
+                        : "placeholder.jpg"
+                });
+
                 printdefault(
-                    book.title,
-                    book.author_name ? book.author_name.join(", ") : "Unknown",
-                    "N/A", imageUrl
+                    doc.title,
+                    doc.author_name ? doc.author_name.join(", ") : "Unknown",
+                    "N/A",
+                    books[i].cover
                 );
             }
         })
         .catch(error => console.error("Error:", error));
 }
 
-function printdefault(book, author, pages, imageUrl) {
+function printdefault(books, author, pages, imageUrl) {
     const newdiv = document.createElement("div");
     newdiv.innerHTML = `
-    <h3>Book Name: ${book} </h3> 
+    <h3>Book Name: ${books} </h3> 
     <p>Author : ${author}</p>
     <p> Number of pages: ${pages}<p/>
-    <img src="${imageUrl}" alt="${book}">
+    <img src="${imageUrl}" alt="${books}">
     `;
     const container = document.querySelector(".defaultbook");
     container.appendChild(newdiv);
